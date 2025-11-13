@@ -17,11 +17,15 @@ public class Program {
             System.out.println("Enter account data");
             System.out.print("Number: ");
             int number = sc.nextInt();
+
             sc.nextLine();
+
             System.out.print("Holder: ");
             String holder = sc.nextLine();
+
             System.out.print("Initial balance: ");
             double initBalance = sc.nextDouble();
+
             System.out.print("Withdraw limit: ");
             double wdLimit = sc.nextDouble();
 
@@ -31,12 +35,14 @@ public class Program {
             System.out.print("Enter amount for withdraw ");
             double amount = sc.nextDouble();
 
-
             account.withdraw(amount);
+
         } catch (BusinessException e) {
             System.out.println(e.getMessage());
+
         } catch (InputMismatchException e){
             System.out.println("Unexpected data type");
+            
         } catch (RuntimeException e){
             System.out.println("Unexpected error");
         }
