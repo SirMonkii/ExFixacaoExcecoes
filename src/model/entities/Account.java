@@ -1,5 +1,7 @@
 package model.entities;
 
+import model.exceptions.BusinessException;
+
 public class Account {
 
     private Integer number;
@@ -48,10 +50,20 @@ public class Account {
 
     public void deposit(Double amount){
         this.balance += amount;
+        System.out.printf("New balance: %.2f%n", this.balance);
     }
 
     public void withdraw(Double amount){
+       validateWithdraw(amount);
+
         this.balance -= amount;
-        System.out.println("New balance: " + this.balance);
+        System.out.printf("New balance: %.2f%n", this.balance);
+    }
+
+    private void validateWithdraw(double amount){
+        if (amount > withdrawalLimit)
+            throw new BusinessException("Withdraw error: the amount exceeds withdraw limit");
+        else if (amount > this.balance)
+            throw new BusinessException("Withdraw error: Not enough balance");
     }
 }
